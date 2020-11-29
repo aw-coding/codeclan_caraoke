@@ -63,5 +63,18 @@ class TestRoom(unittest.TestCase):
         self.small_room.check_guest_into_room(emily)
         self.assertEqual("Sorry, Emily, that room is full.", self.small_room.check_guest_into_room(emily))
 
+    def test_if_guest_is_checked_out(self):
+        alice =        Guest("Alice", 75)
+        self.small_room.check_guest_into_room(alice)
+        self.small_room.check_guest_out_of_room(alice)
+        self.assertEqual(0, len(self.small_room.current_occupants))
+        
+        
+        
+
+
+
+
+
 
 

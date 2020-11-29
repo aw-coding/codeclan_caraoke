@@ -17,3 +17,6 @@ class Room():
             self.current_occupants.append(guest)
         else:
             return f"Sorry, {guest.name}, that room is full."
+
+    def check_guest_out_of_room(self, guest):
+        self.current_occupants.remove(guest)
