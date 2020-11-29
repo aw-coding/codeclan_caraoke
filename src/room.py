@@ -20,3 +20,6 @@ class Room():
 
     def check_guest_out_of_room(self, guest):
         self.current_occupants.remove(guest)
+
+    def remove_all_guests(self):
+        self.current_occupants.clear()

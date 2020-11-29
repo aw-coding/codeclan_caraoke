@@ -13,13 +13,6 @@ class TestRoom(unittest.TestCase):
         self.small_room = Room("Small Room", 3)
         self.vip_room = Room("VIP Room", 8)
 
-        song_1 = Song("Move on Up")
-        self.song_2 = Song("I Want To Break Free")
-        self.song_3 = Song("Africa")
-        self.song_4 = Song("September")
-        self.song_5 = Song("Life on Mars")
-        self.song_6 = Song("Virginia Plain")
-
 
     def test_room_has_name(self):
         self.assertEqual("Large Room", self.large_room.name)
@@ -41,8 +34,6 @@ class TestRoom(unittest.TestCase):
         self.small_room.add_song_to_set_list(song_3)
         self.assertEqual([song_1, song_2, song_3], self.small_room.set_list)
 
-
-
     def test_check_guest_into_room(self):
         alice =        Guest("Alice", 75)
 
@@ -59,14 +50,24 @@ class TestRoom(unittest.TestCase):
 
         self.small_room.check_guest_into_room(alice)
         self.small_room.check_guest_into_room(bob)
-        self.small_room.check_guest_into_room(danny)
-        self.small_room.check_guest_into_room(emily)
+        self.small_room.check_guest_into_room(candice)
         self.assertEqual("Sorry, Emily, that room is full.", self.small_room.check_guest_into_room(emily))
 
     def test_if_guest_is_checked_out(self):
         alice =        Guest("Alice", 75)
         self.small_room.check_guest_into_room(alice)
         self.small_room.check_guest_out_of_room(alice)
+        self.assertEqual(0, len(self.small_room.current_occupants))
+
+    def test_if_room_cleared(self):
+        alice =        Guest("Alice", 75)
+        bob =          Guest("Bob", 60)
+        candice =      Guest("Candice", 55)
+
+        self.small_room.check_guest_into_room(alice)
+        self.small_room.check_guest_into_room(bob)
+        self.small_room.check_guest_into_room(candice)
+        self.small_room.remove_all_guests()
         self.assertEqual(0, len(self.small_room.current_occupants))
         
         
