@@ -2,6 +2,7 @@ import unittest
 
 from src.room import Room
 from src.song import Song
+from src.guest import Guest
 
 
 #Room(name, setlist[], capacity, current occupants[])
@@ -39,5 +40,28 @@ class TestRoom(unittest.TestCase):
         self.small_room.add_song_to_set_list(song_2)
         self.small_room.add_song_to_set_list(song_3)
         self.assertEqual([song_1, song_2, song_3], self.small_room.set_list)
+
+
+
+    def test_check_guest_into_room(self):
+        alice =        Guest("Alice", 75)
+
+        self.small_room.check_guest_into_room(alice)
+        self.assertEqual("Alice", self.small_room.current_occupants[0].name)
+
+    def test_if_room_is_fully_occupied(self):
+        alice =        Guest("Alice", 75)
+        bob =          Guest("Bob", 60)
+        candice =      Guest("Candice", 55)
+        danny =        Guest("Danny", 75)
+        emily =        Guest("Emily", 60)
+        frank =        Guest("Frank", 30)
+
+        self.small_room.check_guest_into_room(alice)
+        self.small_room.check_guest_into_room(bob)
+        self.small_room.check_guest_into_room(danny)
+        self.small_room.check_guest_into_room(emily)
+        self.assertEqual("Sorry, Emily, that room is full.", self.small_room.check_guest_into_room(emily))
+
 
 
