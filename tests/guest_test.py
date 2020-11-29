@@ -1,5 +1,6 @@
 import unittest
 from src.guest import Guest
+from src.room import Room
 
 
 class TestGuest(unittest.TestCase):
@@ -16,3 +17,12 @@ class TestGuest(unittest.TestCase):
 
     def test_customer_has_wallet_amount(self):
         self.assertEqual(55, self.candice.wallet)
+
+    def test_customer_paid_entry_fee(self):
+        small_room = Room("Small Room", 3, 20)
+        self.frank.pay_room_entry_fee(small_room.entry_fee)
+        self.assertEqual(10, self.frank.wallet)
+
+    def test_customer_cannot_afford_entry_fee(self):
+        vip_room = Room("VIP Room", 8, 50)
+        self.assertEqual("Frank cannot afford this" , self.frank.pay_room_entry_fee(vip_room.entry_fee))

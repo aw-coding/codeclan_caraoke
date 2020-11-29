@@ -5,13 +5,13 @@ from src.song import Song
 from src.guest import Guest
 
 
-#Room(name, setlist[], capacity, current occupants[])
+#Room(name, setlist[], capacity, current occupants[], entry_fee)
 
 class TestRoom(unittest.TestCase):
     def setUp(self): #setUp can only contain Room objects!
-        self.large_room = Room("Large Room", 5)
-        self.small_room = Room("Small Room", 3)
-        self.vip_room = Room("VIP Room", 8)
+        self.large_room = Room("Large Room", 5, 20)
+        self.small_room = Room("Small Room", 3, 20)
+        self.vip_room = Room("VIP Room", 8, 50)
 
 
     def test_room_has_name(self):

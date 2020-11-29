@@ -2,11 +2,12 @@
 
 
 class Room():
-    def __init__(self, name, capacity):
+    def __init__(self, name, capacity, entry_fee):
         self.name = name
         self.set_list = []
         self.capacity = capacity
         self.current_occupants = []
+        self.entry_fee = entry_fee
 
 
     def add_song_to_set_list(self, item):
